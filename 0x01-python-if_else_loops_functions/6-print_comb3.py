@@ -1,2 +1,5 @@
 #!/usr/bin/python3
-listint_t *insert_node(listint_t **head, int number);
+for i in range(10):
+    for j in range (i + 1, 10):
+        print("{0}{1}".format(i, j),
+              end="\n" if i == 8 and j == 9 else ", ")

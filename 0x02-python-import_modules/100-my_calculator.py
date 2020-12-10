@@ -9,7 +9,9 @@ if __name__ == "__main__":
         print("Usage: ./100-my_calculator.py <a> <operator> <b>")
         sys.exit(1)
 
-    if sys.argv[2] not in op:
+    inOp = sys.argv[2]
+
+    if inOp not in op:
         print("Unknown operator. Only: +, -, * and / available")
         sys.exit(1)
 
@@ -17,10 +19,11 @@ if __name__ == "__main__":
         a = int(sys.argv[1])
     except:
         raise SystemExit("Input is not an integer")
+
     try:
         b = int(sys.argv[3])
     except:
         raise SystemExit("Input is not an integer")
 
-    print("{:d} {} {:d} = {:d}".format(
-        a, sys.argv[2], b, op[sys.argv[2]](a, b)))
+    print("{} {} {} = {}".format(
+        a, inOp, b, op[inOp](a, b)))

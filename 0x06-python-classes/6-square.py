@@ -1,13 +1,15 @@
 #!/usr/bin/python3
 """
 This is module 6-square
-It defines a basic class Square
+It defines a class that defines a Square
 """
 
 
 class Square:
     """
-    This class Square takes one argument.
+    This class Square takes two private attributes:
+    size (int): len of one side
+    position (tuple): top left corner
 
     Example:
     x = Square(2)
@@ -17,8 +19,8 @@ class Square:
         """
         Instantiate a Square object
         Arguments:
-            size: size of square
-            position: position to print
+            size (int): size of square
+            position (tuple): position to print
         """
         self.__size = size
         self.__position = position
@@ -34,7 +36,7 @@ class Square:
     def size(self, value):
         """
         setter for size
-        Check if the input value is a positive or null digit
+        Check if the input value is a positive or null
         """
         if type(value) is not int:
             raise TypeError("size must be an integer")
@@ -78,4 +80,5 @@ class Square:
             print()
             return
         print("\n" * self.__position[1], end="")
-        print("\n".join([" " * self.__postion[0] + "#" * self.__size for each in range(self.__size)]))
+        print("\n".join([" " * self.__position[0] + "#" * self.__size
+                         for each in range(self.__size)]))

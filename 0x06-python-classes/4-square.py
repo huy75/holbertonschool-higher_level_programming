@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-This is module 3-square
+This is module 4-square
 It defines a basic class Square
 """
 

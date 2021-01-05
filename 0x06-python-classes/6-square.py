@@ -19,11 +19,11 @@ class Square:
         """
         Instantiate a Square object
         Arguments:
-            size (int): size of square
+            size (int): len of size of square
             position (tuple): position to print
         """
-        self.__size = size
-        self.__position = position
+        self.size = size
+        self.position = position
 
     @property
     def size(self):

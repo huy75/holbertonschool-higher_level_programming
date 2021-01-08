@@ -7,19 +7,6 @@ import unittest
 max_integer = __import__('6-max_integer').max_integer
 
 class TestMaxInteger(unittest.TestCase):
-    def test_none_value(self):
-        '''
-            Testing when the paratemerter None is passed
-        '''
-        with self.assertRaises(TypeError):
-            max_integer(None)
-
-    def test_none(self):
-        '''
-            Testing with None in the list
-        '''
-        with self.assertRaises(TypeError):
-            max_integer([1, 2, None])
 
     def test_right_output(self):
         '''
@@ -45,30 +32,11 @@ class TestMaxInteger(unittest.TestCase):
         '''
         self.assertEqual(max_integer([[], [2], [4], [2, 9]]), [4])
 
-    def test_empty_list(self):
-        '''
-            Testing an empty list parameter
-        '''
-        self.assertIsNone(max_integer([]))
-
-    def test_no_param(self):
-        '''
-            Testing no parameter
-        '''
-        self.assertIsNone(max_integer())
-
     def test_equal_values(self):
         '''
             Testing with all the list values equal to each other
         '''
         self.assertEqual(max_integer([1, 1, 1, 1]), 1)
-
-    def test_no_ints(self):
-        '''
-            Testing with values in the list that are not integers
-        '''
-        with self.assertRaises(TypeError):
-            max_integer([1, "hello", 2, 3])
 
     def test_only_negatives(self):
         '''
@@ -93,20 +61,6 @@ class TestMaxInteger(unittest.TestCase):
             Testing with all the list values equal to each other
         '''
         self.assertEqual(max_integer([1]), 1)
-
-    def test_int(self):
-        '''
-            Testing with an int
-        '''
-        with self.assertRaises(TypeError):
-            max_integer(98)
-
-    def test_float(self):
-        '''
-            Testing with a float
-        '''
-        with self.assertRaises(TypeError):
-            max_integer(9.8)
 
 if __name__ == '__main__':
     unittest.main()

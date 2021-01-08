@@ -6,6 +6,7 @@ A test file is provided in the tests directory.
 To run the module: python3 -m doctest -v ./tests/2-matrix_divided.txt
 """
 
+
 def matrix_divided(matrix, div):
     """
     Divides a matrix by a number

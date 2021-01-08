@@ -42,4 +42,5 @@ def matrix_divided(matrix, div):
         for each in row:
             if not isinstance(each, accepted):
                 raise TypeError(mtrxErr)
+
     return [[round(each / div, 2) for each in row] for row in matrix]

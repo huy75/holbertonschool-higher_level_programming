@@ -6,4 +6,4 @@
 *~
 __
 *doctest*
-!./tests/*.txt
+!./tests/*.*

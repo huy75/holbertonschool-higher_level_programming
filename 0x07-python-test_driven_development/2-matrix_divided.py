@@ -31,10 +31,10 @@ def matrix_divided(matrix, div):
     if div == 0:
         raise ZeroDivisionError("division by zero")
 
-    if not isinstance(matrix, list):
+    mtrxLen = len(matrix[0])
+    if not isinstance(matrix, list) or mtrxLen == 0:
         raise TypeError(mtrxErr)
 
-    mtrxLen = len(matrix[0])
     for row in matrix:
         if not isinstance(row, list) or len(row) == 0:
             raise TypeError(mtrxErr)

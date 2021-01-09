@@ -31,14 +31,16 @@ def matrix_divided(matrix, div):
     if div == 0:
         raise ZeroDivisionError("division by zero")
 
-    mtrxLen = len(matrix[0])
-    if not isinstance(matrix, list):
+    if not matrix:
+        raise TypeError(mtrxErr)
+
+    if not isinstance(matrix, list) or len(matrix[0]) == 0:
         raise TypeError(mtrxErr)
 
     for row in matrix:
-        if not isinstance(row, list):
+        if not isinstance(row, list) or len(row) == 0:
             raise TypeError(mtrxErr)
-        if mtrxLen != len(row):
+        if len(matrix[0]) != len(row):
             raise TypeError("Each row of the matrix must have the same size")
         for each in row:
             if not isinstance(each, accepted):

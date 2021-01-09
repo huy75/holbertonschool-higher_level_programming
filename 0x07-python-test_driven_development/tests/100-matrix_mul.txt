@@ -22,6 +22,12 @@ Import ``matrix_mul`` from the ``100-matrix_mul`` module:
      [[13, 16]]
 
 Not a list
+    >>> matrix_mul("hello", [[1, 2], [3, 4]])
+    Traceback (most recent call last):
+    ...
+    TypeError: m_a must be a list
+
+Not a list
     >>> matrix_mul([[1, 2], [3, 4]], "hello")
     Traceback (most recent call last):
     ...

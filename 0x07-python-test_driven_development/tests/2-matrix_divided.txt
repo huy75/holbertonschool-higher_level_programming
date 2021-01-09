@@ -56,15 +56,6 @@ Divide by zero:
        Traceback (most recent call last):
        ZeroDivisionError: division by zero
 
-Empty matrix:
-      >>> matrix = [
-      ... [],
-      ... []
-      ... ]
-      >>> matrix_divided(matrix, 3)
-      Traceback (most recent call last):
-      TypeError: matrix must be a matrix (list of lists) of integers/floats
-
 None as matrix:
      >>> matrix = [
      ... [1, 2, 3],

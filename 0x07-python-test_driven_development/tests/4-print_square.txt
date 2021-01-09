@@ -39,4 +39,4 @@ No argument
 Two arguments
 	>>> print_square(4, 2)
 	Traceback (most recent call last):
-	TypeError:  print_square() takes 1 positional argument but 2 were given
+	TypeError: print_square() takes 1 positional argument but 2 were given

@@ -24,7 +24,6 @@ class Rectangle:
     height(self)
     height(self, value)
     __init__(self, width=0, height=0)
-    __check_arg(self, value)
     area(self)
     perimeter(self)
     __str__(self)

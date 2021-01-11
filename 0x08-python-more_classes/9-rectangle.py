@@ -45,9 +45,9 @@ class Rectangle:
         """
         Instantiate a Rectangle object
         """
-        self.__width = width
-        self.__height = height
-        Rectangle.number_of_instances += 1
+        self.width = width
+        self.height = height
+        type(self).number_of_instances += 1
 
     @property
     def width(self):
@@ -123,11 +123,19 @@ class Rectangle:
         """
         Called at instance deletion.
         """
-        Rectangle.number_of_instances -= 1
+        type(self).number_of_instances -= 1
         print("Bye rectangle...")
 
     @staticmethod
     def bigger_or_equal(rect_1, rect_2):
+        """
+        Compares 2 rectangles
+        Arguments:
+            rect_1: a Rectangle
+            rect_2: a Rectangle
+        Returns:
+            the  Rectangle with bigger area, rect_1 if tie
+        """
         if not isinstance(rect_1, Rectangle):
             raise TypeError('rect_1 must be an instance of Rectangle')
         if not isinstance(rect_2, Rectangle):

@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-This is module 1-rectangle
+This is module 2-rectangle
 It defines a basic class Rectangle
 """
 

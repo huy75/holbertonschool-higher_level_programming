@@ -18,4 +18,4 @@ def inherits_from(obj, a_class):
         If obj is inherited instance of a_class - True.
         Otherwise - False.
     """
-    return isinstance(obj, a_class) and issubclass(type(obj), a_class)
+    return isinstance(obj, a_class) and type(obj) is not a_class

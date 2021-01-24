@@ -123,3 +123,41 @@ class Rectangle(Base):
         """
         self.integer_validator("y", value)
         self.__y = value
+
+    def area(self):
+        """Returns the area of this rectangle."""
+        return (self.width * self.height)
+
+    def display(self):
+        """
+        Returns string representation of Rectangle
+        """
+        print("\n"*self.y, end="")
+        for _ in range(self.height):
+            print(" "*self.x + "#"*self.width)
+
+    def __str__(self):
+        """
+        Returns the representation of Rectangle
+        """
+        return "[Rectangle] ({}) {}/{} - {}/{}" \
+        .format(self.id, self.x, self.y, self.__width, self.__height)
+
+    def update(self, *args, **kwargs):
+        """ Updates attributes of the Rectangle
+
+        Args:
+            args (non-keyword arguments): non-specified amount of arguments
+            kwargs (key-word arguments): non-specified amount of arguments
+        """
+
+        attrs = ["id", "width", "height", "x", "y"]
+
+        for pos, val in enumerate(args):
+            if pos < len(attrs):
+                setattr(self, attrs[pos], val)
+
+        if len(args) == 0:
+            for key, value in kwargs.items():
+                if hasattr(self, key):
+                    setattr(self, key, value)

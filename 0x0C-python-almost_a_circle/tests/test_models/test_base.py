@@ -207,5 +207,16 @@ were given"
             self.assertEqual(f.read(), "[]")
         os.remove("Square.json")
 
+# ---------- task 18 -------------------------------------------
+
+    def test_25_create(self):
+        """Tests create() method."""
+        r1 = Rectangle(1, 2, 3)
+        r1_dictionary = r1.to_dictionary()
+        r2 = Rectangle.create(**r1_dictionary)
+        self.assertEqual(str(r1), str(r2))
+        self.assertFalse(r1 is r2)
+        self.assertFalse(r1 == r2)
+
 if __name__ == '__main__':
     unittest.main()

@@ -308,5 +308,96 @@ given"
 
 # ---------- tasks 8 & 9 -----------------------------
 
+    def test_24_update_no_args(self):
+        """Tests update() method signature."""
+        r = Rectangle(1, 2)
+        with self.assertRaises(TypeError) as e:
+            Rectangle.update()
+        s = "update() missing 1 required positional argument: 'self'"
+        self.assertEqual(str(e.exception), s)
+
+        d = r.__dict__.copy()
+        r.update()
+        self.assertEqual(r.__dict__, d)
+
+    def test_25_update_args(self):
+        """Tests update() postional args."""
+        r = Rectangle(5, 2)
+        d = r.__dict__.copy()
+
+        r.update(1)
+        d["id"] = 1
+        self.assertEqual(r.__dict__, d)
+
+        r.update(1, 2)
+        d["_Rectangle__width"] = 2
+        self.assertEqual(r.__dict__, d)
+
+        r.update(1, 2, 3)
+        d["_Rectangle__height"] = 3
+        self.assertEqual(r.__dict__, d)
+
+        r.update(1, 2, 3, 4)
+        d["_Rectangle__x"] = 4
+        self.assertEqual(r.__dict__, d)
+
+        r.update(1, 2, 3, 4, 5)
+        d["_Rectangle__y"] = 5
+        self.assertEqual(r.__dict__, d)
+
+    def test_26_update_args_bad(self):
+        """Tests update() positional arg."""
+        r = Rectangle(1, 2)
+        d = r.__dict__.copy()
+
+        r.update(1)
+        d["id"] = 1
+        self.assertEqual(r.__dict__, d)
+
+        with self.assertRaises(ValueError) as e:
+            r.update(1, -2)
+        s = "width must be > 0"
+        self.assertEqual(str(e.exception), s)
+
+        with self.assertRaises(ValueError) as e:
+            r.update(1, 2, -3)
+        s = "height must be > 0"
+        self.assertEqual(str(e.exception), s)
+
+        with self.assertRaises(ValueError) as e:
+            r.update(1, 2, 3, -4)
+        s = "x must be >= 0"
+        self.assertEqual(str(e.exception), s)
+
+        with self.assertRaises(ValueError) as e:
+            r.update(1, 2, 3, 4, -5)
+        s = "y must be >= 0"
+        self.assertEqual(str(e.exception), s)
+
+    def test_27_update_kwargs(self):
+        """Tests update() keyword args."""
+        r = Rectangle(1, 2)
+        d = r.__dict__.copy()
+
+        r.update(id=1)
+        d["id"] = 1
+        self.assertEqual(r.__dict__, d)
+
+        r.update(width=2)
+        d["_Rectangle__width"] = 2
+        self.assertEqual(r.__dict__, d)
+
+        r.update(height=3)
+        d["_Rectangle__height"] = 3
+        self.assertEqual(r.__dict__, d)
+
+        r.update(x=4)
+        d["_Rectangle__x"] = 4
+        self.assertEqual(r.__dict__, d)
+
+        r.update(y=5)
+        d["_Rectangle__y"] = 5
+        self.assertEqual(r.__dict__, d)
+
 if __name__ == "__main__":
     unittest.main()

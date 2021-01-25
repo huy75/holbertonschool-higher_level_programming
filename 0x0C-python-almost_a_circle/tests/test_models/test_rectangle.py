@@ -3,7 +3,10 @@
 """
 Unittests for models/rectangle.py.
 """
+import io
+import sys
 import unittest
+from contextlib import redirect_stdout
 from models.base import Base
 from models.rectangle import Rectangle
 
@@ -227,6 +230,63 @@ given"
         self.assertEqual(r.y, 0)
 
 # ---------- task 4 ---------------------------------------------
+
+    def test_18_area_no_args(self):
+        """Tests area() method signature."""
+        r = Rectangle(5, 6)
+        with self.assertRaises(TypeError) as e:
+            Rectangle.area()
+        s = "area() missing 1 required positional argument: 'self'"
+        self.assertEqual(str(e.exception), s)
+
+    def test_19_area(self):
+        """Tests area() method."""
+        r = Rectangle(5, 6)
+        self.assertEqual(r.area(), 30)
+
+        r1 = Rectangle(3, 2)
+        self.assertEqual(r1.area(), 6)
+
+        r2 = Rectangle(2, 10)
+        self.assertEqual(r2.area(), 20)
+
+        r3 = Rectangle(8, 7, 0, 0, 12)
+        self.assertEqual(r3.area(), 56)
+
+        with self.assertRaises(TypeError) as e:
+            Rectangle.area(self, "Hello")
+        s = "area() takes 1 positional argument but 2 were given"
+        self.assertEqual(str(e.exception), s)
+
+# ---------- tasks 5 & 7 -----------------------------
+
+    def test_20_display(self):
+        """Tests rectangle output"""
+        output = io.StringIO() # create StringIO Object
+        sys.stdout = output # Rediurect stdout
+
+        r = Rectangle(2, 2, 2, 2)
+        r.display() # call function
+        display = "\n\n  ##\n  ##\n"
+
+        self.assertEqual(output.getvalue(), display)
+
+        sys.stdout = sys.__stdout__ # Reset redirect
+
+    def test_21_display_no_args(self):
+        """Tests display() method signature."""
+        r = Rectangle(9, 8)
+        with self.assertRaises(TypeError) as e:
+            Rectangle.display()
+        s = "display() missing 1 required positional argument: 'self'"
+        self.assertEqual(str(e.exception), s)
+
+        s = "display() takes 1 positional argument but 2 were given"
+        with self.assertRaises(TypeError) as e:
+            Rectangle.display(self, 9)
+        self.assertEqual(str(e.exception), s)
+
+# ---------- task 6 --------------------------------------------
 
 if __name__ == "__main__":
     unittest.main()

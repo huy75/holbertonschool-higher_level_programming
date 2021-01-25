@@ -211,12 +211,50 @@ were given"
 
     def test_25_create(self):
         """Tests create() method."""
-        r1 = Rectangle(1, 2, 3)
-        r1_dictionary = r1.to_dictionary()
-        r2 = Rectangle.create(**r1_dictionary)
-        self.assertEqual(str(r1), str(r2))
-        self.assertFalse(r1 is r2)
-        self.assertFalse(r1 == r2)
+        obj = Rectangle(1, 2, 3)
+        o_dictionary = obj.to_dictionary()
+        oc = Rectangle.create(**o_dictionary)
+        self.assertEqual(str(obj), str(oc))
+        self.assertFalse(obj is oc)
+        self.assertFalse(obj == oc)
+        self.assertTrue(type(obj) == Rectangle)
+
+        obj = Square(2)
+        o_dictionary = obj.to_dictionary()
+        oc = Square.create(**o_dictionary)
+        self.assertEqual(str(obj), str(oc))
+        self.assertFalse(obj is oc)
+        self.assertFalse(obj == oc)
+        self.assertTrue(type(obj) == Square)
+
+        with self.assertRaises(TypeError):
+            oc = Square.create("string")
+
+# ---------- task 19 -------------------------------------------
+
+    def test_26_load_from_file(self):
+        """Tests load_from_file() method."""
+        r1 = Rectangle(10, 7, 2, 8)
+        r2 = Rectangle(2, 4)
+        list_in = [r1, r2]
+        Rectangle.save_to_file(list_in)
+
+        list_out = Rectangle.load_from_file()
+        self.assertNotEqual(id(list_in[0]), id(list_out[0]))
+        self.assertEqual(str(list_in[0]), str(list_out[0]))
+        self.assertNotEqual(id(list_in[1]), id(list_out[1]))
+        self.assertEqual(str(list_in[1]), str(list_out[1]))
+
+        s1 = Square(5)
+        s2 = Square(7, 9, 1)
+        list_in = [s1, s2]
+        Square.save_to_file(list_in)
+
+        list_out = Square.load_from_file()
+        self.assertNotEqual(id(list_in[0]), id(list_out[0]))
+        self.assertEqual(str(list_in[0]), str(list_out[0]))
+        self.assertNotEqual(id(list_in[1]), id(list_out[1]))
+        self.assertEqual(str(list_in[1]), str(list_out[1]))
 
 if __name__ == '__main__':
     unittest.main()

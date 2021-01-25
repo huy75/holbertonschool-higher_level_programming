@@ -3,6 +3,7 @@
 """
 Unittest for Base
 """
+import os
 import unittest
 from models.base import Base
 from models.rectangle import Rectangle
@@ -153,7 +154,7 @@ were given"
         self.assertEqual(Base.from_json_string(s), d)
 
     def test_22_from_json_string_Rout(self):
-        """Test from_json_string output"""
+        """Test from_json_string output Rectangle"""
         d = [{'x': 1, 'y': 2, 'width': 3, 'id': 4, 'height': 5},
              {'x': 2, 'y': 4, 'width': 6, 'id': 8, 'height': 10}]
 
@@ -164,6 +165,47 @@ were given"
         self.assertEqual(len(out), 2)
         self.assertTrue(type(out[0]) is dict)
         self.assertTrue(type(out[1]) is dict)
+
+    def test_23_from_json_string_Sout(self):
+        """Test from_json_string output Square"""
+        d = [{'id': 1, 'size': 3},
+             {'id': 2, 'size': 4}]
+
+        out = Square.from_json_string(Square.to_json_string(d))
+
+        self.assertEqual(d, out)
+        self.assertTrue(type(out) is list)
+        self.assertEqual(len(out), 2)
+        self.assertTrue(type(out[0]) is dict)
+        self.assertTrue(type(out[1]) is dict)
+
+# ---------- task 16 -------------------------------------------
+
+    def test_24_save_to_file(self):
+        """Tests save_to_file() method."""
+        r1 = Rectangle(10, 7, 2, 8)
+        r2 = Rectangle(2, 4)
+
+        Rectangle.save_to_file([r1, r2])
+        with open("Rectangle.json", "r") as f:
+            self.assertEqual(len(f.read()), 105)
+        os.remove("Rectangle.json")
+
+        Rectangle.save_to_file(None)
+        with open("Rectangle.json", "r") as f:
+            self.assertEqual(f.read(), "[]")
+        os.remove("Rectangle.json")
+
+        s1 = Square(1)
+        Square.save_to_file([s1])
+        with open("Square.json", "r") as f:
+            self.assertEqual(len(f.read()), 38)
+        os.remove("Square.json")
+
+        Square.save_to_file(None)
+        with open("Square.json", "r") as f:
+            self.assertEqual(f.read(), "[]")
+        os.remove("Square.json")
 
 if __name__ == '__main__':
     unittest.main()

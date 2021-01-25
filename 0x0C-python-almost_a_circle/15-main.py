@@ -9,4 +9,4 @@ if __name__ == "__main__":
     Rectangle.save_to_file([r1, r2])
 
     with open("Rectangle.json", "r") as file:
-        print(file.read())
+        print(len(file.read()))

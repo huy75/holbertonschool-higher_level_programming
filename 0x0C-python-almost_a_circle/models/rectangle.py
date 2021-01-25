@@ -140,8 +140,9 @@ class Rectangle(Base):
         """
         Returns the representation of Rectangle
         """
-        return "[Rectangle] ({}) {}/{} - {}/{}" \
-        .format(self.id, self.x, self.y, self.__width, self.__height)
+        return "[Rectangle] ({}) {}/{} - {}/{}"\
+            .format(self.id, self.x, self.y,
+                    self.__width, self.__height)
 
     def update(self, *args, **kwargs):
         """ Updates attributes of the Rectangle

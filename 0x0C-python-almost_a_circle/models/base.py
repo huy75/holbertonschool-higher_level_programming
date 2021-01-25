@@ -16,6 +16,9 @@ class Base:
     def __init__(self, id=None):
         """
         Instantiate a Base object
+
+        Args:
+            id: id
         """
         if id is not None:
             self.id = id
@@ -68,7 +71,7 @@ class Base:
 
         json_list = cls.to_json_string(my_list)
 
-        with open(filename, "w", encoding="UTF-8") as f:
+        with open(filename, "w+", encoding="UTF-8") as f:
             f.write(json_list)
 
     @classmethod
@@ -88,7 +91,6 @@ class Base:
         new.update(**dictionary)
 
         return new
-
 
     @classmethod
     def load_from_file(cls):

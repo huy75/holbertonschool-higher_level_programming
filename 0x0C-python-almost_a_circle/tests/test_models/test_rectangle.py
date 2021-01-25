@@ -22,6 +22,8 @@ class TestRectangle(unittest.TestCase):
         """Cleans up after each test_method."""
         pass
 
+# ---------- task 2 ---------------------------------------------
+
     def test_1_id(self):
         """Prints out the id"""
         r1 = Rectangle(1, 2)
@@ -33,7 +35,6 @@ class TestRectangle(unittest.TestCase):
         r3 = Rectangle(1, 2, 0, 0, 12)
         self.assertEqual(r3.id, 12)
         self.assertTrue(type(r3), Rectangle)
-
 
     def test_2_inheritance(self):
         """Tests if Rectangle inherits Base."""
@@ -123,7 +124,7 @@ given"
         """Tests positional instantiation."""
         r = Rectangle(1, 2, 3, 4)
         d = {'_Rectangle__height': 2, '_Rectangle__width': 1,
-            '_Rectangle__x': 3, '_Rectangle__y': 4, 'id': 1}
+             '_Rectangle__x': 3, '_Rectangle__y': 4, 'id': 1}
         self.assertEqual(r.__dict__, d)
 
         r = Rectangle(1, 2, 3, 4, 5)
@@ -152,12 +153,14 @@ given"
         r.x = 3
         r.y = 4
         d = {'_Rectangle__height': 2, '_Rectangle__width': 1,
-            '_Rectangle__x': 3, '_Rectangle__y': 4, 'id': 1}
+             '_Rectangle__x': 3, '_Rectangle__y': 4, 'id': 1}
         self.assertEqual(r.__dict__, d)
         self.assertEqual(r.width, 1)
         self.assertEqual(r.height, 2)
         self.assertEqual(r.x, 3)
         self.assertEqual(r.y, 4)
+
+# ---------- task 3 ---------------------------------------------
 
 if __name__ == "__main__":
     unittest.main()

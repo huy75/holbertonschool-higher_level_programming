@@ -162,5 +162,71 @@ given"
 
 # ---------- task 3 ---------------------------------------------
 
+    def invalid_types(self):
+        """wrong types"""
+        t = (3.14, -1.1, float('NaN'), float('-inf'), True, "hello", (2,),
+             [4], {5}, {6: 7}, None)
+        return t
+
+    def test_12_validate_type(self):
+        """Test wrong types"""
+        r = Rectangle(1, 2)
+        attributes = ["x", "y", "width", "height"]
+        for each in attributes:
+            s = "{} must be an integer".format(each)
+            for invalid_type in self.invalid_types():
+                with self.assertRaises(TypeError) as e:
+                    setattr(r, each, invalid_type)
+                self.assertEqual(str(e.exception), s)
+
+    def test_13_validate_value_negative_gt(self):
+        """Test with negative value"""
+        r = Rectangle(1, 2)
+        attributes = ["width", "height"]
+        for attribute in attributes:
+            s = "{} must be > 0".format(attribute)
+            with self.assertRaises(ValueError) as e:
+                setattr(r, attribute, -33)
+            self.assertEqual(str(e.exception), s)
+
+    def test_14_validate_value_negative_ge(self):
+        """Test with negative value"""
+        r = Rectangle(1, 2)
+        attributes = ["x", "y"]
+        for attribute in attributes:
+            s = "{} must be >= 0".format(attribute)
+            with self.assertRaises(ValueError) as e:
+                setattr(r, attribute, -33)
+            self.assertEqual(str(e.exception), s)
+
+    def test_15_validate_value_zero(self):
+        """Test with 0"""
+        r = Rectangle(1, 2)
+        attributes = ["width", "height"]
+        for attribute in attributes:
+            s = "{} must be > 0".format(attribute)
+            with self.assertRaises(ValueError) as e:
+                setattr(r, attribute, 0)
+            self.assertEqual(str(e.exception), s)
+
+    def test_16_property(self):
+        """Tests property setting/getting."""
+        r = Rectangle(1, 2)
+        attributes = ["x", "y", "width", "height"]
+        for attribute in attributes:
+            n = 33
+            setattr(r, attribute, n)
+            self.assertEqual(getattr(r, attribute), n)
+
+    def test_17_property_range_zero(self):
+        """Tests property setting/getting."""
+        r = Rectangle(1, 2)
+        r.x = 0
+        r.y = 0
+        self.assertEqual(r.x, 0)
+        self.assertEqual(r.y, 0)
+
+# ---------- task 4 ---------------------------------------------
+
 if __name__ == "__main__":
     unittest.main()

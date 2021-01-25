@@ -262,16 +262,16 @@ given"
 
     def test_20_display(self):
         """Tests rectangle output"""
-        output = io.StringIO() # create StringIO Object
-        sys.stdout = output # Rediurect stdout
+        output = io.StringIO()  # create StringIO Object
+        sys.stdout = output  # Rediurect stdout
 
         r = Rectangle(2, 2, 2, 2)
-        r.display() # call function
+        r.display()  # call function
         display = "\n\n  ##\n  ##\n"
 
         self.assertEqual(output.getvalue(), display)
 
-        sys.stdout = sys.__stdout__ # Reset redirect
+        sys.stdout = sys.__stdout__  # Reset redirect
 
     def test_21_display_no_args(self):
         """Tests display() method signature."""
@@ -287,6 +287,26 @@ given"
         self.assertEqual(str(e.exception), s)
 
 # ---------- task 6 --------------------------------------------
+
+    def test_22_str_no_args(self):
+        """__str__()"""
+        r = Rectangle(1, 2)
+        with self.assertRaises(TypeError) as e:
+            Rectangle.__str__()
+        s = "__str__() missing 1 required positional argument: 'self'"
+        self.assertEqual(str(e.exception), s)
+
+    def test_23_str(self):
+        """__str__()"""
+        r = Rectangle(5, 5, 1)
+        s = '[Rectangle] (1) 1/0 - 5/5'
+        self.assertEqual(str(r), s)
+
+        r = Rectangle(4, 6, 2, 1, 12)
+        s = '[Rectangle] (12) 2/1 - 4/6'
+        self.assertEqual(str(r), s)
+
+# ---------- tasks 8 & 9 -----------------------------
 
 if __name__ == "__main__":
     unittest.main()

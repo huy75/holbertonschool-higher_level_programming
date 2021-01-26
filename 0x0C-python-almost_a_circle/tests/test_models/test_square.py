@@ -316,5 +316,142 @@ given"
         s = '[Square] (40) 20/30 - 10'
         self.assertEqual(str(r), s)
 
+# ---------- tasks 8 & 9 -----------------------------
+
+    def test_25_update_no_args(self):
+        """Tests update() method signature."""
+        r = Square(1, 2)
+        with self.assertRaises(TypeError) as e:
+            Square.update()
+        s = "update() missing 1 required positional argument: 'self'"
+        self.assertEqual(str(e.exception), s)
+
+        d = r.__dict__.copy()
+        r.update()
+        self.assertEqual(r.__dict__, d)
+
+    def test_26_update_args(self):
+        """Tests update() postional args."""
+        r = Square(5, 2)
+        d = r.__dict__.copy()
+
+        r.update(1)
+        d["id"] = 1
+        self.assertEqual(r.__dict__, d)
+
+        r.update(1, 5)
+        d["_Rectangle__height"] = 5
+        d["_Rectangle__width"] = 5
+        self.assertEqual(r.__dict__, d)
+
+        r.update(1, 5, 20)
+        d["_Rectangle__x"] = 20
+        self.assertEqual(r.__dict__, d)
+
+        r.update(1, 5, 20, 25)
+        d["_Rectangle__y"] = 25
+        self.assertEqual(r.__dict__, d)
+
+    def test_27_update_args_bad(self):
+        """Tests update() positional arg fubars."""
+        r = Square(1, 2)
+        d = r.__dict__.copy()
+
+        r.update(1)
+        d["id"] = 1
+        self.assertEqual(r.__dict__, d)
+
+        with self.assertRaises(ValueError) as e:
+            r.update(1, -2)
+        s = "width must be > 0"
+        self.assertEqual(str(e.exception), s)
+
+        with self.assertRaises(ValueError) as e:
+            r.update(1, 2, -3)
+        s = "x must be >= 0"
+        self.assertEqual(str(e.exception), s)
+
+        with self.assertRaises(ValueError) as e:
+            r.update(1, 2, 3, -4)
+        s = "y must be >= 0"
+        self.assertEqual(str(e.exception), s)
+
+    def test_28_update_kwargs(self):
+        """Tests update() keyword args."""
+        r = Square(1, 2)
+        d = r.__dict__.copy()
+
+        r.update(id=1)
+        d["id"] = 1
+        self.assertEqual(r.__dict__, d)
+
+        r.update(size=2)
+        d["_Rectangle__height"] = 2
+        d["_Rectangle__width"] = 2
+        self.assertEqual(r.__dict__, d)
+
+        r.update(x=3)
+        d["_Rectangle__x"] = 3
+        self.assertEqual(r.__dict__, d)
+
+        r.update(y=4)
+        d["_Rectangle__y"] = 4
+        self.assertEqual(r.__dict__, d)
+
+        Base._Base__nb_objects = 0
+        s1 = Square(5)
+        self.assertEqual(str(s1), "[Square] (1) 0/0 - 5")
+
+        s1.update(10)
+        self.assertEqual(str(s1), "[Square] (10) 0/0 - 5")
+
+        s1.update(1, 2)
+        self.assertEqual(str(s1), "[Square] (1) 0/0 - 2")
+
+        s1.update(1, 2, 3)
+        self.assertEqual(str(s1), "[Square] (1) 3/0 - 2")
+
+        s1.update(1, 2, 3, 4)
+        self.assertEqual(str(s1), "[Square] (1) 3/4 - 2")
+
+        s1.update(x=12)
+        self.assertEqual(str(s1), "[Square] (1) 12/4 - 2")
+
+        s1.update(size=7, y=1)
+        self.assertEqual(str(s1), "[Square] (1) 12/1 - 7")
+
+        s1.update(size=7, id=89, y=1)
+        self.assertEqual(str(s1), "[Square] (89) 12/1 - 7")
+
+# ---------- task 14 ----------------------------------
+
+    def test_29_to_dictionary(self):
+        """Tests to_dictionary() signature:"""
+        with self.assertRaises(TypeError) as e:
+            Square.to_dictionary()
+        s = "to_dictionary() missing 1 required positional argument: 'self'"
+        self.assertEqual(str(e.exception), s)
+
+        r = Square(1)
+        d = {'x': 0, 'y': 0, 'size': 1, 'id': 1}
+        self.assertEqual(r.to_dictionary(), d)
+
+        r = Square(1, 2, 3, 4)
+        d = {'x': 2, 'y': 3, 'size': 1, 'id': 4}
+        self.assertEqual(r.to_dictionary(), d)
+
+        r.x = 10
+        r.y = 20
+        r.size = 30
+        d = {'x': 10, 'y': 20, 'size': 30, 'id': 4}
+        self.assertEqual(r.to_dictionary(), d)
+
+        s1 = Square(10, 2, 1)
+        s1_dictionary = s1.to_dictionary()
+        s2 = Square(1, 1)
+        s2.update(**s1_dictionary)
+        self.assertEqual(str(s1), str(s2))
+        self.assertNotEqual(s1, s2)
+
 if __name__ == "__main__":
     unittest.main()

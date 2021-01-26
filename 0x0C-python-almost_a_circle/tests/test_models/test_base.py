@@ -112,6 +112,14 @@ were given"
         self.assertEqual(Base.to_json_string(None), "[]")
         self.assertEqual(Base.to_json_string([]), "[]")
 
+    def test_15_to_json_string(self):
+        """Tests to_json_string() signature:"""
+        with self.assertRaises(TypeError) as e:
+            Base.to_json_string()
+        s = "to_json_string() missing 1 required positional argument: \
+'list_dictionaries'"
+        self.assertEqual(str(e.exception), s)
+
     def test_16_to_json_string_empty(self):
         """Test to_json_string with empty"""
         d = [{}, {}]
@@ -158,6 +166,14 @@ were given"
 
         self.assertEqual(Base.from_json_string(None), [])
         self.assertEqual(Base.from_json_string(""), [])
+
+    def test_20_test_from_json_string(self):
+        """Tests to_json_string() signature:"""
+        with self.assertRaises(TypeError) as e:
+            Base.from_json_string()
+        s = "from_json_string() missing 1 required positional argument: \
+'json_string'"
+        self.assertEqual(str(e.exception), s)
 
     def test_21_to_json_string_empty(self):
         """Test to_json_string with empty"""

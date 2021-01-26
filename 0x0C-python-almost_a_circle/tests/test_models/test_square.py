@@ -231,5 +231,90 @@ given"
         self.assertEqual(r.x, 0)
         self.assertEqual(r.y, 0)
 
+# ---------- task 4 ---------------------------------------------
+
+    def test_19_area_no_args(self):
+        """Tests area() method signature."""
+        r = Square(5)
+        with self.assertRaises(TypeError) as e:
+            Square.area()
+        s = "area() missing 1 required positional argument: 'self'"
+        self.assertEqual(str(e.exception), s)
+
+    def test_20_area(self):
+        """Tests area() method compuation."""
+        r = Square(6)
+        self.assertEqual(r.area(), 36)
+
+        r = Square(6, 7, 8, 9)
+        self.assertEqual(r.area(), 36)
+
+        r = Square(6, y=7, x=8, id=9)
+        self.assertEqual(r.area(), 36)
+
+        Base._Base__nb_objects = 0
+        s1 = Square(5)
+        self.assertEqual(str(s1), "[Square] (1) 0/0 - 5")
+        self.assertEqual(s1.size, 5)
+        s1.size = 10
+        self.assertEqual(str(s1), "[Square] (1) 0/0 - 10")
+        self.assertEqual(s1.size, 10)
+
+        with self.assertRaises(TypeError) as e:
+            s1.size = "6"
+        self.assertEqual(str(e.exception), "width must be an integer")
+
+        with self.assertRaises(ValueError) as e:
+            s1.size = 0
+        self.assertEqual(str(e.exception), "width must be > 0")
+
+# ---------- tasks 5 & 7 ---------------------------------------------
+
+    def test_21_display_no_args(self):
+        """Tests display() method signature."""
+        r = Square(9)
+        with self.assertRaises(TypeError) as e:
+            Square.display()
+        s = "display() missing 1 required positional argument: 'self'"
+        self.assertEqual(str(e.exception), s)
+
+    def test_22_display(self):
+        """Tests Square output"""
+        output = io.StringIO()  # create StringIO Object
+        sys.stdout = output  # Rediurect stdout
+
+        s = Square(4, 3, 2, 1)
+        s.display()  # call function
+        display = "\n\n   ####\n   ####\n   ####\n   ####\n"
+
+        self.assertEqual(output.getvalue(), display)
+
+        sys.stdout = sys.__stdout__  # Reset redirect
+
+# ---------- task 6 --------------------------------------------
+
+    def test_23_str_no_args(self):
+        """Tests __str__() method signature."""
+        r = Square(1, 2)
+        with self.assertRaises(TypeError) as e:
+            Square.__str__()
+        s = "__str__() missing 1 required positional argument: 'self'"
+        self.assertEqual(str(e.exception), s)
+
+    def test_24_str(self):
+        """Tests __str__() method return."""
+        r = Square(5)
+        s = '[Square] (1) 0/0 - 5'
+        self.assertEqual(str(r), s)
+        r = Square(1, 1)
+        s = '[Square] (2) 1/0 - 1'
+        self.assertEqual(str(r), s)
+        r = Square(3, 4, 5)
+        s = '[Square] (3) 4/5 - 3'
+        self.assertEqual(str(r), s)
+        r = Square(10, 20, 30, 40)
+        s = '[Square] (40) 20/30 - 10'
+        self.assertEqual(str(r), s)
+
 if __name__ == "__main__":
     unittest.main()

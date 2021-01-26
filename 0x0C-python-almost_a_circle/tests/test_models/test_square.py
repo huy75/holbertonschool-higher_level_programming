@@ -230,3 +230,6 @@ given"
         r.y = 0
         self.assertEqual(r.x, 0)
         self.assertEqual(r.y, 0)
+
+if __name__ == "__main__":
+    unittest.main()

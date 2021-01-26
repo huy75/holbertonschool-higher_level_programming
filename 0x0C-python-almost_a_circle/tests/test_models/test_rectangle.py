@@ -257,7 +257,7 @@ given"
         r2 = Rectangle(2, 10)
         self.assertEqual(r2.area(), 20)
 
-        r3 = Rectangle(h=8, w=7, x=0, y=0, id=12)
+        r3 = Rectangle(height=8, width=7, x=0, y=0, id=12)
         self.assertEqual(r3.area(), 56)
 
         with self.assertRaises(TypeError) as e:

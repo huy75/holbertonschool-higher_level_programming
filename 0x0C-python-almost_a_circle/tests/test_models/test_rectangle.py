@@ -250,12 +250,14 @@ given"
         self.assertEqual(r.area(), 30)
 
         r1 = Rectangle(3, 2)
-        self.assertEqual(r1.area(), 6)
+        r1.width = 2
+        r1.height = 4
+        self.assertEqual(r1.area(), 8)
 
         r2 = Rectangle(2, 10)
         self.assertEqual(r2.area(), 20)
 
-        r3 = Rectangle(8, 7, 0, 0, 12)
+        r3 = Rectangle(h=8, w=7, x=0, y=0, id=12)
         self.assertEqual(r3.area(), 56)
 
         with self.assertRaises(TypeError) as e:
@@ -310,6 +312,10 @@ given"
         r = Rectangle(4, 6, 2, 1, 12)
         s = '[Rectangle] (12) 2/1 - 4/6'
         self.assertEqual(str(r), s)
+
+        Base._Base__nb_objects = 0
+        r1 = Rectangle(4, 6, 2, 1, 12)
+        self.assertEqual(str(r1), "[Rectangle] (12) 2/1 - 4/6")
 
 # ---------- tasks 8 & 9 -----------------------------
 
@@ -437,7 +443,6 @@ given"
         r.height = 40
         d = {'x': 10, 'y': 20, 'width': 30, 'id': 5, 'height': 40}
         self.assertEqual(r.to_dictionary(), d)
-
 
 if __name__ == "__main__":
     unittest.main()

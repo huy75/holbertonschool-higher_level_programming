@@ -30,7 +30,7 @@ class TestRectangle(unittest.TestCase):
     def test_0_class(self):
         """Tests Rectangle class type."""
         self.assertEqual(str(Rectangle),
-                        "<class 'models.rectangle.Rectangle'>")
+                         "<class 'models.rectangle.Rectangle'>")
 
     def test_1_id(self):
         """Prints out the id"""

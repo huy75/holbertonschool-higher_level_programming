@@ -34,6 +34,11 @@ class TestBase(unittest.TestCase):
         """nb_objects initializes to 0"""
         self.assertEqual(getattr(Base, "_Base__nb_objects"), 0)
 
+    def test_2_id_synced(self):
+        """Tests sync between class and instance id."""
+        b = Base()
+        self.assertEqual(getattr(Base, "_Base__nb_objects"), b.id)
+
     def test_3_id_synced(self):
         """tests class and instance id"""
         b = Base()
@@ -85,12 +90,19 @@ class TestBase(unittest.TestCase):
     def test_id_13_tuple(self):
         self.assertEqual(Base((1, 2)).id, (1, 2))
 
+    def test_14_constructor(self):
+        """Tests constructor signature."""
+        with self.assertRaises(TypeError) as e:
+            Base.__init__()
+        s = "__init__() missing 1 required positional argument: 'self'"
+        self.assertEqual(str(e.exception), s)
+
     def test_14_two_args(self):
         with self.assertRaises(TypeError) as e:
             b = Base(1, 2)
-        msg = "__init__() takes from 1 to 2 positional arguments but 3 \
+        s = "__init__() takes from 1 to 2 positional arguments but 3 \
 were given"
-        self.assertEqual(str(e.exception), msg)
+        self.assertEqual(str(e.exception), s)
 
 # ---------- task 15 --------------------------------------------
 

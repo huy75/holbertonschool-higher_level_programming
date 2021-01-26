@@ -28,9 +28,9 @@ class TestRectangle(unittest.TestCase):
 # ---------- task 2 ---------------------------------------------
 
     def test_0_class(self):
-        '''Tests Rectangle class type.'''
+        """Tests Rectangle class type."""
         self.assertEqual(str(Rectangle),
-                        "<class 'models.rectangle.Rectangle'>")        )
+                        "<class 'models.rectangle.Rectangle'>")
 
     def test_1_id(self):
         """Prints out the id"""

@@ -4,6 +4,7 @@ This is module base.py
 It defines a basic class Base
 """
 import json
+import csv
 
 
 class Base:
@@ -110,3 +111,37 @@ class Base:
         except FileNotFoundError:
             pass
         return my_list
+
+    @classmethod
+    def save_to_file_csv(cls, list_objs):
+        """ Save information into a csv file """
+        file_name = cls.__name__ + ".csv"
+        with open(file_name, 'w', newline='') as f:
+            if list_objs is None or list_objs == []:
+                f.write("[]")
+            else:
+                if cls.__name__ == "Rectangle":
+                    headers = ["id", "width", "height", "x", "y"]
+                else:
+                    headers = ["id", "size", "x", "y"]
+                new_csv = csv.DictWriter(f, fieldnames=headers)
+                for each in list_objs:
+                    new_csv.writerow(each.to_dictionary())
+
+    @classmethod
+    def load_from_file_csv(cls):
+        """ Load csv data """
+        file_name = cls.__name__ + ".csv"
+        try:
+            with open(file_name, 'r', newline='') as f:
+                if cls.__name__ == "Rectangle":
+                    headers = ["id", "width", "height", "x", "y"]
+                else:
+                    headers = ["id", "size", "x", "y"]
+                dict_list = csv.DictReader(f, fieldnames=headers)
+                dict_list = [dict([key, int(value)] for key,
+                                  value in f.items())
+                             for f in dict_list]
+                return [cls.create(**argument) for argument in dict_list]
+        except IOError:
+            return []

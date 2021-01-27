@@ -270,12 +270,16 @@ given"
     def test_20_display(self):
         """Tests rectangle output"""
         output = io.StringIO()  # create StringIO Object
-        sys.stdout = output  # Rediurect stdout
+        sys.stdout = output  # Redirect stdout
 
         r = Rectangle(2, 2, 2, 2)
         r.display()  # call function
         display = "\n\n  ##\n  ##\n"
+        self.assertEqual(output.getvalue(), display)
 
+        r = Rectangle(2, 2)
+        r.display()  # call function
+        display = "\n\n  ##\n  ##\n##\n##\n"
         self.assertEqual(output.getvalue(), display)
 
         sys.stdout = sys.__stdout__  # Reset redirect

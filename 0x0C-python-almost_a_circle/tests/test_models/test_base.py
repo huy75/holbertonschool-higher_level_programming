@@ -224,6 +224,11 @@ were given"
             self.assertEqual(f.read(), "[]")
         os.remove("Rectangle.json")
 
+        Rectangle.save_to_file([])
+        with open("Rectangle.json", "r") as f:
+            self.assertEqual(f.read(), "[]")
+        os.remove("Rectangle.json")
+
         s1 = Square(1)
         Square.save_to_file([s1])
         with open("Square.json", "r") as f:
@@ -231,6 +236,11 @@ were given"
         os.remove("Square.json")
 
         Square.save_to_file(None)
+        with open("Square.json", "r") as f:
+            self.assertEqual(f.read(), "[]")
+        os.remove("Square.json")
+
+        Square.save_to_file([])
         with open("Square.json", "r") as f:
             self.assertEqual(f.read(), "[]")
         os.remove("Square.json")

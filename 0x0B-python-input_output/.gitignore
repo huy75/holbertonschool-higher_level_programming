@@ -4,4 +4,10 @@
 !*.*
 # Ignore ~ files
 *~
+__# Ignore all
+*
+# Unignore all with extensions
+!*.*
+# Ignore ~ files
+*~
 __

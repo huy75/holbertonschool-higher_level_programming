@@ -2,4 +2,4 @@
 DELETE FROM
        second_table
 WHERE
-	score <= 5;
+	`score` <= 5;

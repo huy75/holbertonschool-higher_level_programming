@@ -1,11 +1,11 @@
 --  creates a table second_table
 CREATE TABLE IF NOT EXISTS second_table (
-       id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-       name VARCHAR(256),
-       score INT
+       `id` INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+       `name` VARCHAR(256),
+       `score` INT
 );
 --  create records
-INSERT INTO `second_table` (`id`, `name`, `score`)
+INSERT INTO second_table (`id`, `name`, `score`)
 VALUES (1, "John", 10),
        (2, "Alex", 3),
        (3, "Bob", 14),

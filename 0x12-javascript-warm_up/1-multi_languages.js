@@ -1,5 +1,7 @@
 #!/usr/bin/node
-// Prints out a message to the log
+/*
+a script that prints 3 lines
+*/
 const c = 'C is fun';
 const python = 'Python is cool';
 const js = 'Javascript is amazing';

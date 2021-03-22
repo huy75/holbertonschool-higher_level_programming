@@ -54,6 +54,8 @@ $ sudo apt-get install -y nodejs
 
 [Documentation](https://intranet.hbtn.io/rltoken/FuXjfOYe18hUXCDoyMxBSg "Documentation")
 
+[![js-semistandard-style](https://raw.githubusercontent.com/standard/semistandard/master/badge.svg)](https://github.com/standard/semistandard)
+
 ```
 $ sudo npm install semistandard --global
 ```

@@ -5,6 +5,5 @@ but by using an array of string and a loop
 */
 const lines = ['C is fun', 'Python is cool', 'Javascript is amazing'];
 
-for (let idx = 0; idx < lines.length; idx++) {
-  console.log(lines[idx]);
-}
+for (const each of lines) {
+  console.log(each);}

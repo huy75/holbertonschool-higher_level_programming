@@ -3,9 +3,8 @@
 Prints 3 lines: (like 1-multi_languages.js)
 but by using an array of string and a loop
 */
-const array = ['C is fun', 'Python is cool', 'Javascript is amazing'];
-let idx;
+const lines = ['C is fun', 'Python is cool', 'Javascript is amazing'];
 
-for (idx = 0; idx < array.length; idx++) {
-  console.log(array[idx]);
+for (let idx = 0; idx < lines.length; idx++) {
+  console.log(lines[idx]);
 }

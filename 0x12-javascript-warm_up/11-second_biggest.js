@@ -10,6 +10,6 @@ if (process.argv.length === 2 || process.argv.length === 3) {
     args[idx] = parseInt(process.argv[idx]);
   }
   // eliminate duplicates
-  const newA = Array.from([...new Set(args)]);
-  console.log(newA.slice(2).sort(function (a, b) { return b - a; })[1]);
+  // const newA = Array.from([...new Set(args)]);
+  console.log(args.slice(2).sort(function (a, b) { return b - a; })[1]);
 }

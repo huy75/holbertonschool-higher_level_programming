@@ -2,7 +2,7 @@
 // Computes and prints a factorial
 
 function fact (n) {
-  if (isNaN(n) || n === 1 || n === 0) {
+  if (isNaN(n) || n < 2) {
     return 1;
   } else {
     return fact(n - 1) * n;

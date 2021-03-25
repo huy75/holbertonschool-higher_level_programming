@@ -18,11 +18,24 @@ if __name__ == "__main__":
         """
         Base.metadata.create_all(engine)
 
-        # creates a SQLAlchemy ORM session factory bound to this engine
+        """
+        creates a SQLAlchemy ORM session class
+        which will serve as a factory for new Session objects
+        bound to this engine
+        """
         Session = sessionmaker(bind=engine)
-        # creates a session
+
+        """
+        instantiates a session
+        to converse with the DB
+        """
         session = Session()
 
+        """
+        When its first used, it retrieves a connection from a pool
+        of connections maintained by the Engine, and holds onto it
+        until we commit all changes and/or close the session object.
+        """
         query = session.query(State).order_by(State.id).all()
 
         for row in query:

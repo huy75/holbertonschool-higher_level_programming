@@ -10,7 +10,7 @@ if __name__ == "__main__":
                              passwd=argv[2], db=argv[3], port=3306,
                              charset="utf8")
         query = """ SELECT * FROM states WHERE name LIKE BINARY '{}' ORDER BY
-        states.id ASC"""
+        states.id ASC;"""
         query = query.format(argv[4])
 
         with db.cursor() as cur:

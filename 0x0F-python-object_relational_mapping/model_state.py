@@ -11,6 +11,8 @@ Base = declarative_base()
 Creates a class that includes directives to describe
 the actual database table it will be mapped to.
 """
+
+
 class State(Base):
     """the class to which the table 'states' is mapped to"""
     __tablename__ = 'states'

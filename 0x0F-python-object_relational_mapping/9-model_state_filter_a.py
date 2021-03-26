@@ -1,14 +1,17 @@
 #!/usr/bin/python3
-# lists all State objects from the database hbtn_0e_6_usa
+"""
+lists all State objects that contain the letter a
+from the database hbtn_0e_6_usa
+"""
 if __name__ == "__main__":
     from sys import argv
     from sqlalchemy import create_engine
     from sqlalchemy.orm import sessionmaker
     from model_state import State, Base
 
-    # Base is an instance of the declarative base class
+    """ Base is an instance of the declarative base class """
     if len(argv) == 4:
-        # creates a SQLAlchemy Engine
+        """ creates a SQLAlchemy Engine """
         engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'
                                .format(argv[1], argv[2],
                                        argv[3]), pool_pre_ping=True)
@@ -36,8 +39,10 @@ if __name__ == "__main__":
         of connections maintained by the Engine, and holds onto it
         until we commit all changes and/or close the session object.
         """
-        query = session.query(State).order_by(State.id).all()
+        query = session.query(State).filter(State.name.like('%a%')).\
+            order_by(State.id)
 
-        for row in query:
-            print('{}: {}'.format(row.id, row.name))
+        for state in query:
+            print("{}: {}".format(state.id, state.name))
+
         session.close()

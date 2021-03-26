@@ -1,13 +1,14 @@
 #!/usr/bin/python3
 """
-prints all City objects from the database hbtn_0e_14_usa
+creates the State California with the City San Francisco
+from the database hbtn_0e_100_usa
 """
 if __name__ == "__main__":
     from sys import argv
     from sqlalchemy import create_engine
     from sqlalchemy.orm import sessionmaker
-    from model_state import State, Base
-    from model_city import City
+    from relationship_state import State, Base
+    from relationship_city import City
 
     # Base is an instance of the declarative base class
     if len(argv) == 4:
@@ -39,9 +40,12 @@ if __name__ == "__main__":
         of connections maintained by the Engine, and holds onto it
         until we commit all changes and/or close the session object.
         """
-        query = session.query(City, State).\
-            filter(City.state_id == State.id).all()
-        for city, state in query:
-            print('{}: ({}) {}'.format(state.name, city.id, city.name))
+        nstate = State(name='California')
+        ncity = City(name='San Francisco')
+        nstate.cities.append(ncity)
+
+        session.add_all([nstate, ncity])
+
+        session.commit()
 
         session.close()

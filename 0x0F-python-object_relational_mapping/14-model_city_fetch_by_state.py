@@ -9,9 +9,9 @@ if __name__ == "__main__":
     from model_state import State, Base
     from model_city import City
 
-    # Base is an instance of the declarative base class
+    """ Base is an instance of the declarative base class """
     if len(argv) == 4:
-        # creates a SQLAlchemy Engine
+        """ creates a SQLAlchemy Engine """
         engine = create_engine('mysql+mysqldb://{}:{}@localhost:3306/{}'
                                .format(argv[1], argv[2],
                                        argv[3]), pool_pre_ping=True)

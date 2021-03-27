@@ -17,7 +17,7 @@ if __name__ == "__main__":
                            charset="utf8")
     query = "SELECT cities.name FROM cities " +\
             "LEFT JOIN states ON states.id = cities.state_id " +\
-            "WHERE states.name = %s ORDER BY cities.id;"
+            "WHERE states.name = %(name)s ORDER BY cities.id;"
 
     cur = conn.cursor()
     cur.execute(query, {'name': nameSrch})

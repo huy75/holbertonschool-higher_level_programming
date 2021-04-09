@@ -3,10 +3,10 @@
 Users github api to list out 10 most recent commits
 from specified repo and user
 """
-if __name__ == "__main__":
-    import requests
-    from sys import argv
+import requests
+from sys import argv
 
+if __name__ == "__main__":
     repo = argv[1]
     owner = argv[2]
     u = "http://api.github.com/repos/{}/{}/commits".format(owner, repo)

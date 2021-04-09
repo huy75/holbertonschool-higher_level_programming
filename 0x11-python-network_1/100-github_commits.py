@@ -9,17 +9,17 @@ if __name__ == "__main__":
 
     repo = argv[1]
     owner = argv[2]
-    url = "https://api.github.com/repos/{}/{}/commits".format(owner, repo)
+    u = "https://api.github.com/repos/{}/{}/commits".format(owner, repo)
 
-    response = requests.get(url)
+    response = requests.get(url=u, params={'per_page': 10})
     if response.status_code != 200:
         print("None")
     else:
         commits = response.json()
         try:
-            for idx in range(10):
+            for each in commits:
                 print("{}: {}".format(
-                    commits[idx].get("sha"),
-                    commits[idx].get("commit").get("author").get("name")))
+                    each.get("sha"),
+                    each.get("commit").get("author").get("name")))
         except IndexError:
             pass

@@ -16,10 +16,7 @@ if __name__ == "__main__":
         print("None")
     else:
         commits = response.json()
-        try:
-            for each in commits:
-                print("{}: {}".format(
-                    each.get("sha"),
-                    each.get("commit").get("author").get("name")))
-        except IndexError:
-            pass
+        for each in commits:
+            print("{}: {}".format(
+                each.get("sha"),
+                each.get("commit").get("author").get("name")))

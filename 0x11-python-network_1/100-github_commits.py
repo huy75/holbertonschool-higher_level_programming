@@ -9,7 +9,7 @@ if __name__ == "__main__":
 
     repo = argv[1]
     owner = argv[2]
-    u = "https://api.github.com/repos/{}/{}/commits".format(owner, repo)
+    u = "http://api.github.com/repos/{}/{}/commits".format(owner, repo)
 
     response = requests.get(url=u, params={'per_page': 10})
     if response.status_code != 200:

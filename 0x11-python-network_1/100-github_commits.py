@@ -9,8 +9,13 @@ from sys import argv
 if __name__ == "__main__":
     repo = argv[1]
     owner = argv[2]
-    u = "http://api.github.com/repos/{}/{}/commits".format(owner, repo)
+    url = "http://api.github.com/repos/{}/{}/commits".format(owner, repo)
 
+    response = requests.get(url).json()
+    for r in response[:10]:
+        print("{}: {}".format(r.get('sha'),
+                              r.get('commit').get('author').get('name')))
+    """
     response = requests.get(url=u, params={'per_page': 10})
     if response.status_code != 200:
         print("None")
@@ -20,3 +25,4 @@ if __name__ == "__main__":
             print("{}: {}".format(
                 each.get("sha"),
                 each.get("commit").get("author").get("name")))
+    """

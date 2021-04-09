@@ -1,0 +1,22 @@
+#!/usr/bin/python3
+"""
+Users github api to list out 10 most recent commits
+from specified repo and user
+"""
+if __name__ == "__main__":
+    import requests
+    from sys import argv
+
+    repo = argv[1]
+    owner = argv[2]
+    url = "https://api.github.com/repos/{}/{}/commits".format(owner, repo)
+
+    response = requests.get(url)
+    commits = response.json()
+    try:
+        for idx in range(10):
+            print("{}: {}".format(
+                commits[idx].get("sha"),
+                commits[idx].get("commit").get("author").get("name")))
+    except IndexError:
+        pass

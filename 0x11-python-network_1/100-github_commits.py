@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """
-    fetch api github about an user
+fetch api github about an user
 """
 import requests
 import sys

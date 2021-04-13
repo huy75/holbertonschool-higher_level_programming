@@ -1,7 +1,9 @@
 #!/usr/bin/python3
 """
-fetch api github about an user
+Users github api to list out 10 most recent commits
+from specified repo and user
 """
+
 import requests
 import sys
 

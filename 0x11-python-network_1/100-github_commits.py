@@ -8,16 +8,12 @@ import sys
 
 
 if __name__ == "__main__":
-    repo = sys.argv[1]
-    owner = sys.argv[2]
-    u = "http://api.github.com/repos/{}/{}/commits".format(owner, repo)
-
-    response = requests.get(url=u, params={'per_page': 10})
-    if response.status_code != 200:
-        print("None")
-    else:
-        commits = response.json()
-        for each in commits:
-            print("{}: {}".format(
-                  each.get("sha"),
-                  each.get("commit").get("author").get("name")))
+    if len(sys.argv) == 3:
+        h = {'Accept': 'application/vnd.github.v3+json'}
+        u = "https://api.github.com/repos/{}/{}/commits"\
+            .format(sys.argv[2], sys.argv[1])
+        r = requests.get(u, params={'per_page': 10}, headers=h)
+        for i, k in enumerate(r.json()):
+            s = r.json()[i]['sha']
+            n = r.json()[i]['commit']['author']['name']
+            print("{}: {}".format(s, n))

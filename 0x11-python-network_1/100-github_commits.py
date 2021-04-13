@@ -19,5 +19,5 @@ if __name__ == "__main__":
         commits = response.json()
         for each in commits:
             print("{}: {}".format(
-                each.get("sha"),
-                each.get("commit").get("author").get("name")))
+                  each.get("sha"),
+                  each.get("commit").get("author").get("name")))

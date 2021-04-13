@@ -1,12 +1,9 @@
 #!/usr/bin/python3
 """
-Users github api to list out 10 most recent commits
-from specified repo and user
+    fetch api github about an user
 """
 import requests
 import sys
-
-
 if __name__ == "__main__":
     if len(sys.argv) == 3:
         h = {'Accept': 'application/vnd.github.v3+json'}
